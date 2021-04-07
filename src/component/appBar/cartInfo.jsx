@@ -10,7 +10,7 @@ function CartInfo() {
   const dispatch = useDispatch();
   useEffect(() => {
     id !== "" && dispatch(asyncThunkGetCartListById(id));
-  }, [id]);
+  }, [id, dispatch]);
   const cartList = useSelector((state) => state.cart);
   const matches = useMediaQuery(
     (theme) => {

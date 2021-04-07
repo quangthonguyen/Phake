@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { useParams } from "react-router";
 import Link from "@material-ui/core/Link";
 import {
   AddShoppingCart,

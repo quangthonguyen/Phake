@@ -59,9 +59,6 @@ function Toolbar(props) {
         <InputLabel>Giá</InputLabel>
         <Select
           label="Giá"
-          onChange={(event) => {
-            // setValue("type", event.target.value);
-          }}
           classes={{ root: classes.select }}
           defaultValue={
             (sort === "incPrice" && "Thấp đến cao") ||

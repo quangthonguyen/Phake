@@ -6,7 +6,6 @@ import {
   Grid,
   makeStyles,
   Paper,
-  Slide,
   Table,
   TableBody,
   TableCell,

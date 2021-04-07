@@ -11,7 +11,6 @@ import {
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import {
-  StarBorder,
   Settings,
   Person,
   GTranslate,

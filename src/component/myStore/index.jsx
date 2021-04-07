@@ -24,7 +24,7 @@ function MyStore() {
   const history = useHistory();
   useEffect(() => {
     user._id === "" && history.push("/home");
-  }, [user._id]);
+  }, [user._id, history]);
   return (
     <>
       <Container maxWidth="lg" classes={{ root: classes.container }}>

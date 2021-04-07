@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Breadcrumbs,
   Container,
   Grid,
   Hidden,
@@ -10,7 +9,6 @@ import {
 } from "@material-ui/core";
 import ListUI from "../List/ListUI";
 import SlickUI from "../slick/SlickUI";
-import LoginAndRegisterUI from "../loginAndRegister/loginAndRegisterUI";
 import SlickImageUI from "../slick/SlickImageUI";
 import Footer from "../footer";
 

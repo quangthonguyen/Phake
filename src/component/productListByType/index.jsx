@@ -8,7 +8,6 @@ function ProductListByType() {
   const dispatch = useDispatch();
   const pagination = useSelector((state) => state.productbyType.pagination);
   const loading = useSelector((state) => state.productbyType.loading);
-  const sort = useSelector((state) => state.productbyType.sort);
   const data = useSelector((state) => state.productbyType.data);
   const { type, page = 1, sortBy = "commom" } = useParams();
   useEffect(() => {
@@ -16,7 +15,7 @@ function ProductListByType() {
       asyncThunkGetProductbyType({
         limit: 15,
         currentPage: page,
-        type,
+        type: type,
         sort: sortBy,
       })
     );

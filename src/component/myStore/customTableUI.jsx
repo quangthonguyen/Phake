@@ -78,7 +78,7 @@ function CustomTableUI(props) {
                   <TableCell align="right">
                     <FormattedNumber
                       value={value.price}
-                      style="currency"
+                      style={"currency"}
                       currency="VND"
                     />
                   </TableCell>

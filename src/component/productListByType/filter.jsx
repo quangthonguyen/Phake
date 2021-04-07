@@ -7,7 +7,7 @@ import {
   makeStyles,
   TextField,
 } from "@material-ui/core";
-import { ExpandLess, ExpandMore, FilterList, Send } from "@material-ui/icons";
+import { ExpandLess, ExpandMore, FilterList } from "@material-ui/icons";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { category, categoryText } from "../List/ListUI";

@@ -70,7 +70,7 @@ function AddProductFormUI(props) {
   const onSubmit = (data) => {
     let image = [];
     for (let index = 1; index <= upload.length; index++) {
-      if (data[`image${index}`] != "") {
+      if (data[`image${index}`] !== " ") {
         image.push(data[`image${index}`]);
       }
     }

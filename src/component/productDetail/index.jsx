@@ -30,7 +30,7 @@ function ProductDetail() {
           })
         );
     }, 1000000),
-    [dispatch]
+    [dispatch, exitInCart, id, userId]
   );
 
   const handleAddCartwhiout = useCallback(

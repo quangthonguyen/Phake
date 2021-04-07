@@ -8,7 +8,6 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import { CardTravel } from "@material-ui/icons";
 import React from "react";
 import { FormattedNumber } from "react-intl";
 import { useHistory } from "react-router";

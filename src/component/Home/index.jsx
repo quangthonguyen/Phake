@@ -8,7 +8,7 @@ function HomePage() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(asyncThunkGetNewProduct());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <HomeUI newProduct={newProduct} />

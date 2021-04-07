@@ -13,11 +13,9 @@ import {
   Popover,
 } from "@material-ui/core";
 import {
-  AccountCircle,
   AssignmentInd,
   Favorite,
   ListAlt,
-  Person,
   Storefront,
 } from "@material-ui/icons";
 import React, { useState } from "react";
