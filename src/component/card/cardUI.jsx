@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Card,
   CardActionArea,
@@ -6,40 +6,58 @@ import {
   makeStyles,
   CardContent,
   Typography,
-} from '@material-ui/core';
+} from "@material-ui/core";
+import { useHistory } from "react-router";
 const useStyle = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(0.5),
-    minWidth: '100px',
+    margin: "0.5%",
+    flexBasis: "19%",
+    [theme.breakpoints.down("md")]: {
+      flexBasis: "24%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      flexBasis: "32%",
+    },
+    [theme.breakpoints.down("xs")]: {
+      flexBasis: "49%",
+    },
   },
   media: {
     height: 0,
-    paddingTop: '100%',
+    paddingTop: "100%",
   },
   clampTitle: {
-    display: '-webkit-box',
-    '-webkit-box-orient': 'vertical',
-    '-webkit-line-clamp': '2',
-    overflow: 'hidden',
+    display: "-webkit-box",
+    "-webkit-box-orient": "vertical",
+    "-webkit-line-clamp": "2",
+    overflow: "hidden",
     height: theme.typography.h2.fontSize * theme.typography.h2.lineHeight,
   },
   price: {
-    color: '#ee4d2d',
+    color: "#ee4d2d",
   },
   cardContentRoot: {
     padding: theme.spacing(1),
   },
 }));
 
-function CardUI() {
+function CardUI(props) {
+  const {
+    product = { image: [""], productName: "", price: 0, _id: 0 },
+  } = props;
+  const { image = [""], productName = "", price = 0, _id = 0 } = product;
+  const history = useHistory();
   const classes = useStyle();
   return (
-    <Card className={classes.root}>
+    <Card
+      className={classes.root}
+      onClick={() => history.push(`/product/${_id}`)}
+    >
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://cf.shopee.vn/file/55bca951c83ecb13d12ac62c831ccf2b_tn"
-          title="Procduct Image"
+          image={image[0]}
+          title={productName}
         />
         <CardContent classes={{ root: classes.cardContentRoot }}>
           <Typography
@@ -47,7 +65,7 @@ function CardUI() {
             component="h2"
             className={classes.clampTitle}
           >
-            Xe vision 2020 - soc gia 100%
+            {productName}
           </Typography>
           <Typography
             gutterBottom
@@ -55,10 +73,10 @@ function CardUI() {
             className={classes.price}
             noWrap
           >
-            {new Intl.NumberFormat('vi-VI', {
-              style: 'currency',
-              currency: 'VND',
-            }).format(10000000)}
+            {new Intl.NumberFormat("vi-VI", {
+              style: "currency",
+              currency: "VND",
+            }).format(price)}
           </Typography>
         </CardContent>
       </CardActionArea>

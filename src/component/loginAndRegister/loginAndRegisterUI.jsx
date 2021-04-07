@@ -1,24 +1,53 @@
-import React from 'react';
-import { Dialog, Tabs, Tab, DialogContent } from '@material-ui/core';
-import LoginUI from './loginUI';
-import RegisterUI from './registerUI';
+import React from "react";
+import { Dialog, Tabs, Tab, DialogContent } from "@material-ui/core";
+import Register from "./register";
+import Login from "./login";
 
-function LoginAndRegisterUI() {
+const allyPrors = (index) => ({
+  id: `simple-tab-${index}`,
+});
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
   return (
-    <Dialog open>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && children}
+    </div>
+  );
+}
+
+function LoginAndRegisterUI(prors) {
+  const { openLogIn, handleCloseDialog, value, handleSwith } = prors;
+  const handleChange = (event, newIndex) => {
+    handleSwith(newIndex);
+  };
+
+  return (
+    <Dialog open={openLogIn} onClose={handleCloseDialog}>
       <DialogContent>
         <Tabs
           centered
-          value={0}
+          value={value}
           variant="fullWidth"
           indicatorColor="primary"
           textColor="primary"
+          onChange={handleChange}
         >
-          <Tab label="Login" />
-          <Tab label="Register" />
+          <Tab label="Login" {...allyPrors(0)} />
+          <Tab label="Register" {...allyPrors(1)} />
         </Tabs>
-        {/* <LoginUI /> */}
-        <RegisterUI />
+        <TabPanel value={value} index={0}>
+          <Login />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Register />
+        </TabPanel>
       </DialogContent>
     </Dialog>
   );

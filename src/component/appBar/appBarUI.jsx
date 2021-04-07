@@ -1,22 +1,26 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   AppBar,
   Toolbar,
   Typography,
-  InputBase,
   Container,
-} from '@material-ui/core';
-import { Person, Notifications, LocationOn, Search } from '@material-ui/icons';
-import { makeStyles, fade } from '@material-ui/core/styles';
+} from "@material-ui/core";
+import { Person } from "@material-ui/icons";
+import { makeStyles, fade } from "@material-ui/core/styles";
+import { FormattedMessage } from "react-intl";
+import InfoUser from "./userInfo";
+import CartInfo from "./cartInfo";
+import { useHistory } from "react-router";
+import SearchProduct from "./searchProduct";
 
 const useStyle = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     borderRadius: theme.shape.borderRadius,
-    color: 'inherit',
+    color: "inherit",
     backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
+    "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     padding: theme.spacing(0.5, 1, 0.5, 1),
@@ -25,34 +29,45 @@ const useStyle = makeStyles((theme) => ({
   searchIcon: {
     padding: theme.spacing(0, 1),
   },
+  pointer: {
+    cursor: "pointer",
+  },
 }));
 
-function CustomAppBar() {
+function CustomAppBar(props) {
+  const { handleToggleLogin, user } = props;
+  const { firstName, lastName } = user;
   const classes = useStyle();
+  const history = useHistory();
   return (
     <AppBar position="static">
       <Container maxWidth="lg">
         <Toolbar variant="dense" disableGutters>
-          <Typography variant="h6" noWrap>
-            Tiki
-          </Typography>
-          <InputBase
-            startAdornment={<Search />}
-            placeholder="Search…"
-            classes={{
-              root: classes.root,
-              inputAdornedStart: classes.searchIcon,
+          <Typography
+            variant="h6"
+            noWrap
+            onClick={() => {
+              history.push("/");
             }}
-          />
-          <Button startIcon={<LocationOn />} color="inherit" size="small">
-            Theo giỏi
-          </Button>
-          <Button startIcon={<Notifications />} color="inherit" size="small">
-            Thông báo
-          </Button>
-          <Button startIcon={<Person />} color="inherit" size="small">
-            Đăng nhập
-          </Button>
+            className={classes.pointer}
+          >
+            PhaKe
+          </Typography>
+          <SearchProduct />
+
+          <CartInfo />
+          {firstName !== "" && lastName !== "" ? (
+            <InfoUser user={user} />
+          ) : (
+            <Button
+              startIcon={<Person />}
+              color="inherit"
+              size="small"
+              onClick={handleToggleLogin}
+            >
+              <FormattedMessage id="appBar.logIn" defaultMessage="Log In" />
+            </Button>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

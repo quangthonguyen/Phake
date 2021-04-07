@@ -1,15 +1,14 @@
-import React from 'react';
+import React from "react";
 import {
-  FormControl,
-  InputLabel,
-  FormHelperText,
-  OutlinedInput,
-  InputAdornment,
-  IconButton,
   makeStyles,
   Button,
-} from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+  CircularProgress,
+  Typography,
+} from "@material-ui/core";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../../yup/yup";
+import CustomOutlinedInput from "../common/customOutlinedInput.jsx";
 
 const useStyle = makeStyles((theme) => ({
   form: {
@@ -17,33 +16,49 @@ const useStyle = makeStyles((theme) => ({
     maxWidth: 350,
   },
   submit: {
-    margin: '8px 0px 4px 0px',
+    margin: "8px 0px 4px 0px",
+  },
+  progress: {
+    color: "inherit",
+    position: "absolute",
   },
 }));
-function LoginUI() {
+function LoginUI(props) {
+  const { handleLogin, user } = props;
+  const { loading, error } = user;
   const classes = useStyle();
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+  const onSubmit = (data) => {
+    handleLogin(data);
+  };
+  const demoAccount = {
+    email: "demoAccount@gmail.com",
+    password: "Vn0937088685",
+  };
   return (
-    <form noValidate autoComplete="off" className={classes.form}>
-      <FormControl fullWidth size="small" margin="dense" variant="outlined">
-        <InputLabel>Email</InputLabel>
-        <OutlinedInput name="email" label="Email" />
-        <FormHelperText>Some important helper text </FormHelperText>
-      </FormControl>
-      <FormControl fullWidth size="small" margin="dense" variant="outlined">
-        <InputLabel>Password</InputLabel>
-        <OutlinedInput
-          name="password"
-          label="Password"
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton aria-label="toggle password visibility" edge="end">
-                {true ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          }
-        />
-        <FormHelperText>Some important helper text</FormHelperText>
-      </FormControl>
+    <form
+      noValidate
+      autoComplete="off"
+      className={classes.form}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <CustomOutlinedInput
+        label="Email"
+        name="email"
+        inputRef={register}
+        errors={errors.email}
+        disabled={loading}
+      />
+      <CustomOutlinedInput
+        label="Password"
+        name="password"
+        inputRef={register}
+        errors={errors.password}
+        disabled={loading}
+        type="password"
+      />
       <Button
         variant="contained"
         color="primary"
@@ -52,9 +67,36 @@ function LoginUI() {
         fullWidth
         className={classes.submit}
         type="submit"
+        disabled={loading}
       >
-        login
+        log in
+        {loading && (
+          <CircularProgress size={24} classes={{ root: classes.progress }} />
+        )}
       </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        disableElevation
+        size="large"
+        fullWidth
+        className={classes.submit}
+        disabled={loading}
+        onClick={() => handleLogin(demoAccount)}
+      >
+        Using Demo Account
+        {loading && (
+          <CircularProgress size={24} classes={{ root: classes.progress }} />
+        )}
+      </Button>
+      <Typography
+        variant="caption"
+        display="block"
+        align="center"
+        color="error"
+      >
+        {error}
+      </Typography>
     </form>
   );
 }
