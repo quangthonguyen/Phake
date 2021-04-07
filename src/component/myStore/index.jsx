@@ -23,7 +23,7 @@ function MyStore() {
   const user = useSelector((state) => state.user);
   const history = useHistory();
   useEffect(() => {
-    user._id === "" && history.push("/home");
+    user._id === "" && history.push("/");
   }, [user._id, history]);
   return (
     <>
