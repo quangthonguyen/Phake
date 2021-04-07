@@ -1,5 +1,5 @@
 import { AppBar, IconButton, makeStyles, Toolbar } from "@material-ui/core";
-import { Home, ShoppingCart, Ballot, Person } from "@material-ui/icons";
+import { Home, Ballot, Person } from "@material-ui/icons";
 import React, { useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { useHistory } from "react-router";

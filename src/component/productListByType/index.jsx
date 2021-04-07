@@ -19,7 +19,7 @@ function ProductListByType() {
         sort: sortBy,
       })
     );
-  }, [page, sortBy, type]);
+  }, [page, sortBy, type, dispatch]);
   return (
     <>
       <ProductListByTypeUI

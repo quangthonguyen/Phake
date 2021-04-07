@@ -37,7 +37,7 @@ function CustomTable() {
         vendorId: userId,
       })
     );
-  }, [pagination.limit, pagination.currentPage]);
+  }, [pagination.limit, pagination.currentPage, dispatch, userId]);
   return (
     <>
       <CustomTableUI
