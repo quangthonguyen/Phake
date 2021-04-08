@@ -35,7 +35,7 @@ export default function configureAppStore(preloadedState) {
           serializableCheck: true,
         },
       }),
-    devTools: process.env.NODE_ENV !== "production",
+    devTools: false,
     preloadedState,
     enhancers: (defaultEnhancers) => [...defaultEnhancers],
   });
